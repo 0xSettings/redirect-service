@@ -1,8 +1,8 @@
 
 #[derive(Debug)]
-#[serde(rename_all = "camelCase")]
 pub struct Url {
-    pub id: String,
+    pub short_key: ShortKey,
+    pub original_url: String,
     pub url: String,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
