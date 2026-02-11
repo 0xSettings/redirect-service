@@ -7,8 +7,11 @@ use crate::model::errors::DomainError;
 pub struct KeyService;
 
 impl KeyService {
-    pub fn generate_short_key() -> Result<ShortKey, DomainError> {
-        
+    pub fn generate_short_key(length: usize) -> Result<ShortKey, DomainError> {
+        let key: String = thread_rng().sample_iter()
+        .take(length)
+        .map(char::from)
+        .collect();
     }
 }
 
