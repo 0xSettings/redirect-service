@@ -1,5 +1,6 @@
 
 #[derive(Debug)]
+#[serde(rename_all = "camelCase")]
 pub struct Url {
     pub id: String,
     pub url: String,
@@ -32,10 +33,14 @@ pub struct UrlResponse {
     pub updated_at: DateTime<Utc>,
 }
 
-impl UrlResponse {
-    pub fn new(url: Url) -> Self {
+impl From<Url> for UrlResponse {
+    fn from(url: Url) -> Self {
         Self {
             id: url.id,
+            url: url.url,
+            created_at: url.created_at,
+            updated_at: url.updated_at,
         }
     }
 }
+
