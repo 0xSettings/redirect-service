@@ -16,6 +16,11 @@ impl Url {
             updated_at: Utc::now(),
         }
     }
+
+    pub fn update(&mut self, new_url: String) {
+        self.url = new_url;
+        self.updated_at = Utc::now();
+    }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
