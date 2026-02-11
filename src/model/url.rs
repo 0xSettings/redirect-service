@@ -25,8 +25,8 @@ impl Url {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UrlResponse {
-    pub id: String,
-    pub url: String,
+    pub short_key: ShortKey,
+    pub original_url: String,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
@@ -34,8 +34,8 @@ pub struct UrlResponse {
 impl From<Url> for UrlResponse {
     fn from(url: Url) -> Self {
         Self {
-            id: url.id,
-            url: url.url,
+            short_key: url.short_key,
+            original_url: url.original_url,
             created_at: url.created_at,
             updated_at: url.updated_at,
         }
