@@ -3,25 +3,23 @@
 pub struct Url {
     pub short_key: ShortKey,
     pub original_url: String,
-    pub url: String,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
 }
 
 impl Url {
-    pub fn new(url: String) -> Self {
+    pub fn new(short_key: ShortKey, original_url: String) -> Self {
         Self {
-            id: Uuid::new_v4().to_string(),
-            url,
+            original_url,
             created_at: Utc::now(),
             updated_at: Utc::now(),
         }
     }
 
-    pub fn update(&mut self, new_url: String) {
-        self.url = new_url;
-        self.updated_at = Utc::now();
-    }
+    // pub fn update(&mut self, new_url: String) {
+    //     self.original_url = new_url;
+    //     self.updated_at = Utc::now();
+    // }
 }
 
 #[derive(Debug, Serialize, Deserialize)]
