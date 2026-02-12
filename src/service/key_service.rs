@@ -7,6 +7,7 @@ use crate::model::errors::DomainError;
 pub struct KeyService;
 
 impl KeyService {
+    //generate unique shortkey with a specified alphanumeric length constrain 
     pub fn generate_short_key(length: usize) -> Result<ShortKey, DomainError> {
         let key: String = thread_rng()
             .sample_iter(Alphanumeric)
@@ -15,6 +16,11 @@ impl KeyService {
             .collect();
 
         Ok(ShortKey(key))
+    }
+
+    //does original url has a short key ? if yes get it 
+    pub fn get_existing_key(original_url: &str) -> Option<ShortKey> {
+        
     }
 
 }
