@@ -10,8 +10,16 @@ impl UrlService{
             OK(Url::new(existing_key, original_url.to_string()));
         }
 
-        //
+        //key generation
+        let short_key = KeyService::generate_short_key(6)?;
+
+        //save mapped key to database for easy rtrival
+        KeyService::save_mapped_key(original_url, &short_key)?;
+        Ok(Url::new(short_key, original_url.to_string));
     }
+
+    //get short key resolved
+    pub fn resolve_short_key
 }
 
 
