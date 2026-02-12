@@ -7,6 +7,6 @@ pub fn find_by_original_url(original_url: &str) -> Result<Option<Url>, DomainErr
     //
 }
 
-pub fn find_by_short_key(short_key: &ShortKey) -> Result<Option<ShortKey>, DomainError> {
+pub fn find_by_short_key(short_key: &ShortKey) -> Result<Option<Url>, DomainError> {
     //
 }

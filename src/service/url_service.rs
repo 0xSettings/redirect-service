@@ -20,7 +20,8 @@ impl UrlService{
 
     //get short key resolved
     pub fn resolve_short_key(short_key: &ShortKey) -> Result<Url, DomainError> {
-        url_repository::find_by_original_url
+        url_repository::find_by_short_key(short_key)
+        .map_err(|_| DomainError::UrlNotFound)
     }
 }
 
