@@ -1,5 +1,5 @@
 pub mod url_service;
-pub mod short_key_service;
+pub mod key_service;
 
 pub use url_service::UrlService;
-pub use short_key_service::ShortKeyService;
+pub use key_service::KeyService;

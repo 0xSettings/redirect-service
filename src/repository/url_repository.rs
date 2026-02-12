@@ -1,7 +1,7 @@
 use crate::model::Url;
 use crate::model::short_key::ShortKey;
 use crate::model::errors::DomainError;
-
+use sqlx::{PgPool};
 /// Returns `Ok(Some(url))` if found, `Ok(None)` if not found, `EDomain err` on DB error.
 #[async_trait::async_trait]
 pub trait UrlRepository: Send + Sync {
@@ -17,3 +17,8 @@ pub struct PostgresUrlRepository {
     pool: PgPool,
 }
 
+impl PostgresUrlRepository {
+    pub fn new(pool: PgPool) -> Self {
+        Self { pool }
+    }
+}

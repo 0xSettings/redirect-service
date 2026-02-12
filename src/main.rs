@@ -1,6 +1,8 @@
 
 mod model;
 mod repository;
+mod service;
+
 use service::url_service::UrlService;
 use sqlx::{PgPool};
 use repository::url_repository::PostgresUrlRepository;
