@@ -8,10 +8,14 @@ pub struct KeyService;
 
 impl KeyService {
     pub fn generate_short_key(length: usize) -> Result<ShortKey, DomainError> {
-        let key: String = thread_rng().sample_iter()
-        .take(length)
-        .map(char::from)
-        .collect();
+        let key: String = thread_rng()
+            .sample_iter(Alphanumeric)
+            .take(length)
+            .map(char::from)
+            .collect();
+
+        Ok(ShortKey(key))
     }
+
 }
 
