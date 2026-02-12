@@ -18,11 +18,12 @@ impl KeyService {
         Ok(ShortKey(key))
     }
 
-    //does original url has a short key ? if yes get it 
+    /// If the original URL already has a short key, return it; otherwise `None`.
     pub fn get_existing_key(original_url: &str) -> Option<ShortKey> {
-        url_reposi::find_by_original_url(original_url).ok()
-        .flatten()
-        .map(|url| url.short_key)
+        crate::repository::url_repository::find_by_original_url(original_url)
+            .ok()
+            .flatten()
+            .map(|url| url.short_key)
     }
 
 }
