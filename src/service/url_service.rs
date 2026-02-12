@@ -21,16 +21,6 @@ impl UrlService{
     //get short key resolved
     pub fn resolve_short_key(short_key: &ShortKey) -> Result<Url, DomainError> {
         url_repository::find_by_short_key(short_key)
-        .map_err(|_| DomainError::UrlNotFound)
+        .map_err(|_| DomainError::UrlNotFound).and_then(|opt| opt.ok_or(DomainError::UrlNotFound));
     }
 }
-
-
-//validate input
-
-//call key service to generate a short key
-
-//construct the model entity
-//call repository to save the url
-//return the response
-//handle errors collisions retries

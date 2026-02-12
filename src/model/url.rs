@@ -9,6 +9,7 @@ pub struct Url {
 impl Url {
     pub fn new(short_key: ShortKey, original_url: String) -> Self {
         Self {
+            short_key,
             original_url,
             created_at: Utc::now(),
         }

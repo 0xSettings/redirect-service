@@ -7,3 +7,7 @@ edition = "2024"
 axum = { version = "0.8.8", features = ["ws", "http2", "macros"] }
 serde = { version = "1.0.228", features = ["derive"] }
 tokio = { version = "1.49.0", features = ["full"] }
+sqlx = { version = "0.7", features = ["runtime-tokio", "postgres", "chrono"] }
+chrono = { version = "0.4", features = ["serde"] }
+async-trait = "0.1"
+rand = "0.8"
