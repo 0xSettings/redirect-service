@@ -13,4 +13,7 @@ pub trait UrlRepository: Send + Sync {
     async fn insert(&self, url: &Url) -> Result<(), DomainError>;
 }
 
+pub struct PostgresUrlRepository {
+    pool: PgPool,
+}
 
