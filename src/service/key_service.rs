@@ -3,6 +3,7 @@ use crate::model::ShortKey;
 use rand::{thread_rng, Rng};
 use rand::distributions::Alphanumeric;
 use crate::model::errors::DomainError;
+use crate::repository::url_repository::find_by_original_url;
 
 pub struct KeyService;
 
@@ -20,10 +21,16 @@ impl KeyService {
 
     /// If the original URL already has a short key, return it; otherwise `None`.
     pub fn get_existing_key(original_url: &str) -> Option<ShortKey> {
-        crate::repository::url_repository::find_by_original_url(original_url)
-            .ok()
-            .flatten()
-            .map(|url| url.short_key)
+        find_by_original_url(original_url)
+        .ok()
+        .flatten()
+        .map(|url| url.short_key)
+    }
+
+    //save to databse
+    pub fn save_mapped_key(original_url: &str, short_key: &ShortKey) -> Result<(), DomainError> {
+        url_repository::insert_url(original_url, short_key)
+        .map_err(|_| DomainError::ShortKeyAlreadyExists);
     }
 
 }
