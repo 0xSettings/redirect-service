@@ -1,12 +1,18 @@
-// It looks like `service` might not be correctly resolved. You might need to double-check the module path or mod imports.
-// For now, assuming the crate/module is set up correctly:
 
+mod model;
+mod repository;
 use service::url_service::UrlService;
-use sqlx::PgPool;
+use sqlx::{PgPool};
+use repository::url_repository::PostgresUrlRepository;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Your main async logic goes here
+    dotenv::dotenv().ok();
+    let database_url = std::env::var("DATABASE_URL")?;
+    let pool = PgPool::connect(&database_url).await?;
+    let repo = PostgresUrlRepository::new(pool);
+    let url_service = UrlService::new(repo);
+    
     Ok(())
 }
-}
+
