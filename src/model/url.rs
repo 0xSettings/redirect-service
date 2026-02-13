@@ -28,7 +28,7 @@ pub struct UrlResponse {
 }
 
 impl UrlResponse {
-    pub fn from(url: Url, base_url: &str) -> Self {
+    pub fn new(url: Url, base_url: &str) -> Self {
         Self {
             short_key: format!("{}/{}", base_url, url.short_key.as_str()),
             original_url: url.original_url,
