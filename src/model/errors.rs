@@ -1,6 +1,13 @@
+use thiserror::Error;
+
+#[derive(Debug, Error)]
 pub enum DomainError {
-    InvalidShortKey,
-    InvalidUrl,
+    #[error("URL not found")]
     UrlNotFound,
-    ShortKeyAlreadyExists,
+
+    #[error("Invalid short key")]
+    InvalidShortKey,
+
+    #[error("Database error: {0}")]
+    DatabaseError(#[from] sqlx::Error),
 }

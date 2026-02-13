@@ -1,6 +1,6 @@
 use crate::model::short_key::ShortKey;
 use chrono::{DateTime, Utc};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug)]
 pub struct Url {
@@ -36,4 +36,3 @@ impl From<Url> for UrlResponse {
         }
     }
 }
-
