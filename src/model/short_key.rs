@@ -2,7 +2,7 @@ use crate::model::errors::DomainError;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct ShortKey(pub String);  
+pub struct ShortKey(String);  
 
 
 impl ShortKey {
