@@ -4,7 +4,7 @@ use serde::Deserialize;
 
 use axum::{Json, extract::{Path, State}, http::{StatusCode, }, response::{IntoResponse, Redirect}};
 
-use crate::{model::{DomainError, ShortKey, UrlResponse}, service::{ UrlService}};
+use crate::{model::{DomainError, ShortKey, UrlResponse}};
 
 
 

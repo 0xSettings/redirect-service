@@ -3,7 +3,7 @@ mod model;
 mod repository;
 mod service;
 
-use api::handler::{redirect_to_url, shorten_url, AppState};
+use api::handler::{redirect_to_url, shorten_url};
 use axum::{routing::{get, post}, Router};
 use repository::url_repository::PostgresUrlRepository;
 use service::url_service::UrlService;
