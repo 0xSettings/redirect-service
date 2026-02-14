@@ -27,13 +27,15 @@ impl UrlRepository for PostgresUrlRepository {
         let row = sqlx::query!(
             "SELECT short_key, original_url, created_at FROM urls WHERE original_url = $1",
             original_url
-        ).fetch_optional(&self.pool).await?;
+        )
+        .fetch_optional(&self.pool)
+        .await?;
 
-        Ok((row.map(|k| Url{
-            short_key: ShortKey::new(k.short_key).expect("DB had invalid short_key"),
-            original_url: k.original_url,
-            created_at: k.created_at.and_utc(),
-        })))
+        Ok(row.map(|r| Url {
+            short_key: ShortKey::new(r.short_key).expect("DB had invalid short_key"),
+            original_url: r.original_url,
+            created_at: r.created_at.and_utc(),
+        }))
     }
 
     async fn find_by_short_key(&self, short_key: &ShortKey) -> Result<Option<Url>, DomainError> {
