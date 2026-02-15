@@ -23,7 +23,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let app = Router::new()
     .route("/shorten", post(shorten_url))
-    .route("/{short_key}", get(redirect_to_url))  // ← curly braces not colon
+    .route("/{short_key}", get(redirect_to_url))  
     .with_state(service);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await?;
