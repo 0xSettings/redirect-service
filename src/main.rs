@@ -22,9 +22,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let service = Arc::new(UrlService::new(repo));
 
     let app = Router::new()
-        .route("/shorten", post(shorten_url))
-        .route("/:short_key", get(redirect_to_url))
-        .with_state(service);
+    .route("/shorten", post(shorten_url))
+    .route("/{short_key}", get(redirect_to_url))  // ← curly braces not colon
+    .with_state(service);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:8080").await?;
     println!("Server running on http://localhost:8080");
