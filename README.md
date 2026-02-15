@@ -22,6 +22,8 @@ A URL shortening service built with Rust using Axum, SQLx, and PostgreSQL. Gener
 
 ## Architecture
 
+![System Design](./docs/system-design.svg)
+
 The codebase follows a strict layered architecture. Each layer only knows about the layer directly beneath it — never above it, and never skipping layers.
 
 ```
