@@ -1,4 +1,4 @@
-# SHORTRN LINK + REDIRECTION SERVICE 
+# SHORTEN URL + REDIRECTION SERVICE 
 
 A URL shortening service built with Rust using Axum, SQLx, and PostgreSQL. Generates unique 6-character alphanumeric short keys, persists mappings to a relational database, and issues HTTP 301 redirects. Idempotent by design — submitting the same long URL always returns the same short key.
 
@@ -112,7 +112,7 @@ cargo install sqlx-cli --no-default-features --features postgres
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourname/redirect-service
+git clone https://github.com/0xSettings/redirect-service
 cd redirect-service
 ```
 
