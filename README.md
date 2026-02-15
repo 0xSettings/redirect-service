@@ -1,6 +1,6 @@
 # SHORTEN URL + REDIRECTION SERVICE 
 
-A URL shortening service built with Rust using Axum, SQLx, and PostgreSQL. Generates unique 6-character alphanumeric short keys, persists mappings to a relational database, and issues HTTP 301 redirects. Idempotent by design — submitting the same long URL always returns the same short key.
+A URL shortening service built with Rust using Axum, SQLx, and PostgreSQL. Generates unique 6-character alphanumeric short keys, persists mappings to a relational database, and issues HTTP 301 redirects. Idempotent by design submitting the same long URL always returns the same short key.
 
 ---
 
@@ -24,7 +24,7 @@ A URL shortening service built with Rust using Axum, SQLx, and PostgreSQL. Gener
 
 ![System Design](./docs/system-design.svg)
 
-The codebase follows a strict layered architecture. Each layer only knows about the layer directly beneath it — never above it, and never skipping layers.
+The codebase follows a strict layered architecture. Each layer only knows about the layer directly beneath it never above it, and never skipping layers.
 
 ```
 ┌─────────────────────────────────────┐
@@ -53,7 +53,7 @@ The codebase follows a strict layered architecture. Each layer only knows about 
 
 ### Key Design Principles
 
-**Newtype Pattern** — `ShortKey` wraps a `String` but validation always runs through `ShortKey::new()`. It is impossible to construct an invalid `ShortKey` at compile time — the type system enforces the invariant.
+**Newtype Pattern** — `ShortKey` wraps a `String` but validation always runs through `ShortKey::new()`. It is impossible to construct an invalid `ShortKey` at compile time  the type system enforces the invariant.
 
 **Trait-based Repository** — `UrlRepository` is a trait, not a concrete type. `UrlService` depends on the trait, not on `PostgresUrlRepository` directly. This means the entire database layer can be swapped for an in-memory fake in tests without touching service code.
 
@@ -378,6 +378,3 @@ cargo sqlx migrate run
 
 ---
 
-## License
-
-MIT
