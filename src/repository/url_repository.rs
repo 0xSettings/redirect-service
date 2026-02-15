@@ -5,8 +5,7 @@ use async_trait::async_trait;
 use chrono::NaiveDateTime;
 use sqlx::PgPool;
 
-/// Row type for SELECT queries when not using the query! macro (e.g. with SQLX_OFFLINE and no cache).
-/// Postgres TIMESTAMP (without time zone) decodes to NaiveDateTime.
+
 type UrlRow = (String, String, NaiveDateTime);
 
 #[async_trait]
@@ -38,8 +37,7 @@ fn row_into_url(row: UrlRow) -> Url {
 impl UrlRepository for PostgresUrlRepository {
     async fn find_by_original_url(&self, original_url: &str) -> Result<Option<Url>, DomainError> {
         let row = sqlx::query_as::<_, UrlRow>(
-            "SELECT short_key, original_url, created_at FROM urls WHERE original_url = $1",
-        )
+            "SELECT short_key, original_url, created_at FROM urls WHERE original_url = $1",)
         .bind(original_url)
         .fetch_optional(&self.pool)
         .await?;
@@ -49,8 +47,7 @@ impl UrlRepository for PostgresUrlRepository {
 
     async fn find_by_short_key(&self, short_key: &ShortKey) -> Result<Option<Url>, DomainError> {
         let row = sqlx::query_as::<_, UrlRow>(
-            "SELECT short_key, original_url, created_at FROM urls WHERE short_key = $1",
-        )
+            "SELECT short_key, original_url, created_at FROM urls WHERE short_key = $1",)
         .bind(short_key.as_str())
         .fetch_optional(&self.pool)
         .await?;
