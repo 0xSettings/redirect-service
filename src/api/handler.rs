@@ -1,14 +1,13 @@
 use std::sync::Arc;
 use serde::Deserialize;
+use crate::service::url_service::UrlService; // ← add this line
 
-
-use axum::{Json, extract::{Path, State}, http::{StatusCode, }, response::{IntoResponse, Redirect}};
-
-use crate::{model::{DomainError, ShortKey, UrlResponse}};
-
-
+use axum::{Json, extract::{Path, State}, http::StatusCode, response::{IntoResponse, Redirect}};
+use crate::model::{DomainError, ShortKey, UrlResponse};
 
 pub type AppState = Arc<UrlService>;
+
+
 
 #[derive(Deserialize)]
 pub struct ShortenReq {
