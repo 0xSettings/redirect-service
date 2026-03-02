@@ -13,3 +13,21 @@ async-trait = "0.1"
 rand = "0.8"
 dotenv = "0.15"
 thiserror = "2.0.18"
+tower = "0.4"
+serde_json = "1"
+
+[[test]]
+name = "api_tests"
+path = "tests/api_tests.rs"
+
+[[test]]
+name = "short_key_tests"
+path = "tests/short_key_tests.rs"
+
+[[test]]
+name = "repository_tests"
+path = "tests/repository_tests.rs"
+
+[[test]]
+name = "url_service_tests"
+path = "tests/url_service_tests.rs"
